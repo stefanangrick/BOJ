@@ -11,16 +11,6 @@ files](https://www.stat-search.boj.or.jp/info/dload_en.html) available
 on the [BOJ Time-Series Data](https://www.stat-search.boj.or.jp/)
 portal.
 
-## Installation
-
-Install the package using the below commands:
-
-``` r
-library("devtools")
-install_github("stefanangrick/BOJ")  # From GitHub
-install.packages("BOJ")              # From CRAN
-```
-
 ## Import data
 
 To import data, first load the package:
@@ -59,28 +49,29 @@ frame listing the available data sets. The column `url` can be used as
 input for the function `get_boj()` which downloads, parses and imports
 the corresponding data.
 
-To import monthly-frequency data on Japan’s [Balance of
-Payments](https://www.boj.or.jp/en/statistics/br/index.htm/), run:
+To import monthly-frequency data on Japan’s [Services Producer Price
+Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/),
+run:
 
 ``` r
-bop <- get_boj(datasets$url[(datasets$name == "bp_m_en")])
-bop
+sppi <- get_boj(datasets$url[(datasets$name == "sppi_m_en")])
+sppi
 ```
 
-    ## # A tibble: 822,600 x 6
-    ##    code     desc                      struc            unit      date  obs_value
-    ##    <chr>    <chr>                     <chr>            <chr>     <chr>     <dbl>
-    ##  1 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…      342.
-    ##  2 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     8609.
-    ##  3 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…    13154.
-    ##  4 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     6176.
-    ##  5 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     4080.
-    ##  6 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     6361.
-    ##  7 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     5450.
-    ##  8 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     4778.
-    ##  9 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     7049.
-    ## 10 BPBP6JY… Balance of Payments (Dat… Current account… 100 mill… 1996…     3758.
-    ## # … with 822,590 more rows
+    ## # A tibble: 36,648 x 5
+    ##    code         desc                     struc                   date  obs_value
+    ##    <chr>        <chr>                    <chr>                   <chr>     <dbl>
+    ##  1 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.6
+    ##  2 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.7
+    ##  3 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
+    ##  4 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100  
+    ##  5 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
+    ##  6 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100  
+    ##  7 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
+    ##  8 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
+    ##  9 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.9
+    ## 10 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.9
+    ## # … with 36,638 more rows
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the
 following:
@@ -90,15 +81,17 @@ library("dplyr")
 library("ggplot2")
 library("zoo")
 
-bop_plot <- subset(bop, code %in% c("BPBP6JYNTB", "BPBP6JYNSN", "BPBP6JYNPIN",
-                                    "BPBP6JYNSIN"))
-bop_plot <- mutate(bop_plot, date = as.Date(as.yearmon(date, format = "%Y%m")))
-bop_plot <- subset(bop_plot, date > as.Date("2000-01-01"))
-bop_plot <- subset(bop_plot, !is.na(obs_value))
+sppi_plot <- subset(sppi, code %in% c("PRCS15_5200000000", "PRCS15_5200010001",
+                                      "PRCS15_5200010002", "PRCS15_5200010003",
+                                      "PRCS15_5200010004", "PRCS15_5200010005",
+                                      "PRCS15_5200010006", "PRCS15_5200010007"))
+sppi_plot <- mutate(sppi_plot, date = as.Date(as.yearmon(date, format = "%Y%m")))
+sppi_plot <- mutate(sppi_plot, struc = gsub("^Major group/ ", "", struc))
+sppi_plot <- subset(sppi_plot, !is.na(obs_value))
 
-ggplot(bop_plot, aes(x = date, y = obs_value)) +
-  geom_bar(aes(fill = struc), stat = "identity") +
-  labs(x = "Date", y = "100 million yen") +
+ggplot(sppi_plot, aes(x = date, y = obs_value)) +
+  geom_line(aes(colour = struc)) +
+  labs(x = "Date", y = "Services Producer Price Index (2015 base)") +
   theme(legend.title = element_blank())
 ```
 
