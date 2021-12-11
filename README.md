@@ -95,7 +95,7 @@ ggplot(sppi_plot, aes(x = date, y = obs_value)) +
   theme(legend.title = element_blank())
 ```
 
-![](README_files/figure-gfm/plot-1.png?)<!-- -->
+![](README_files/figure-gfm/plot-1.png)<!-- -->
 
 Note that BOJ data sets come with a number of different time formats.
 The [zoo](https://cran.r-project.org/package=zoo) package
