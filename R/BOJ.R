@@ -28,7 +28,8 @@ get_boj_datasets <- function() {
   nodes <- rvest::html_nodes(page, xpath = "//a[contains(@href, 'zip')]")
 
   # Get description, file name, and path to file
-  item_descs <- iconv(rvest::html_table(page)[[1]][, 1], "utf-8", "ascii", "")
+  item_descs <- lapply(rvest::html_table(page)[[1]][, 1], iconv,
+                       from = "utf-8", to = "ascii", "")[[1]]
   item_names <- gsub(".zip", "", rvest::html_text(nodes))
   item_urls  <- paste0("https://www.stat-search.boj.or.jp/info/",
                        (rvest::html_attr(nodes, "href")))
