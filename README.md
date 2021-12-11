@@ -27,7 +27,7 @@ datasets <- get_boj_datasets()
 datasets
 ```
 
-    ## # A tibble: 13 x 3
+    ## # A tibble: 13 × 3
     ##    desc                                    name     url                         
     ##    <chr>                                   <chr>    <chr>                       
     ##  1 "Corporate Goods Price Index (CGPI)"    cgpi_m_… https://www.stat-search.boj…
@@ -35,7 +35,7 @@ datasets
     ##  3 "Services Producer Price Index (SPPI)"  sppi_m_… https://www.stat-search.boj…
     ##  4 "Wholesale Services Price Index"        sppi_q_… https://www.stat-search.boj…
     ##  5 "Input-Output Price Index of the Manuf… iopi_m_… https://www.stat-search.boj…
-    ##  6 "Flow of Funds"                         fof      https://www.stat-search.boj…
+    ##  6 "Flow of Funds, "                       fof      https://www.stat-search.boj…
     ##  7 "Flow of Funds (with name of time-seri… fof2_en  https://www.stat-search.boj…
     ##  8 "TANKAN"                                co       https://www.stat-search.boj…
     ##  9 "TANKAN (Fixed Investment and Software… colease  https://www.stat-search.boj…
@@ -58,20 +58,20 @@ sppi <- get_boj(datasets$url[(datasets$name == "sppi_m_en")])
 sppi
 ```
 
-    ## # A tibble: 36,648 x 5
-    ##    code         desc                     struc                   date  obs_value
-    ##    <chr>        <chr>                    <chr>                   <chr>     <dbl>
-    ##  1 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.6
-    ##  2 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.7
-    ##  3 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
-    ##  4 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100  
-    ##  5 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
-    ##  6 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100  
-    ##  7 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
-    ##  8 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…     100. 
-    ##  9 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.9
-    ## 10 PRCS15_5200… Services Producer Price… [Services Producer Pri… 2015…      99.9
-    ## # … with 36,638 more rows
+    ## # A tibble: 41,738 × 5
+    ##    code              desc                  struc                 date  obs_value
+    ##    <chr>             <chr>                 <chr>                 <chr>     <dbl>
+    ##  1 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.6
+    ##  2 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.7
+    ##  3 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
+    ##  4 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100  
+    ##  5 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
+    ##  6 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100  
+    ##  7 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
+    ##  8 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
+    ##  9 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
+    ## 10 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
+    ## # … with 41,728 more rows
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the
 following:
