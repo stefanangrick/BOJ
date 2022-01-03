@@ -1,7 +1,7 @@
 BOJ
 ================
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/BOJ)](http://cran.r-project.org/package=BOJ)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BOJ)](http://cran.r-project.org/package=BOJ)
 [![Cranlogs
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/BOJ)](http://cran.r-project.org/package=BOJ)
 
@@ -27,7 +27,7 @@ datasets <- get_boj_datasets()
 datasets
 ```
 
-    ## # A tibble: 13 × 3
+    ## # A tibble: 17 × 3
     ##    desc                                    name     url                         
     ##    <chr>                                   <chr>    <chr>                       
     ##  1 "Corporate Goods Price Index (CGPI)"    cgpi_m_… https://www.stat-search.boj…
@@ -35,7 +35,7 @@ datasets
     ##  3 "Services Producer Price Index (SPPI)"  sppi_m_… https://www.stat-search.boj…
     ##  4 "Wholesale Services Price Index"        sppi_q_… https://www.stat-search.boj…
     ##  5 "Input-Output Price Index of the Manuf… iopi_m_… https://www.stat-search.boj…
-    ##  6 "Flow of Funds, "                       fof      https://www.stat-search.boj…
+    ##  6 "Flow of Funds"                         fof      https://www.stat-search.boj…
     ##  7 "Flow of Funds (with name of time-seri… fof2_en  https://www.stat-search.boj…
     ##  8 "TANKAN"                                co       https://www.stat-search.boj…
     ##  9 "TANKAN (Fixed Investment and Software… colease  https://www.stat-search.boj…
@@ -43,6 +43,10 @@ datasets
     ## 11 "Regional Balance of Payments (quarter… regbp_q… https://www.stat-search.boj…
     ## 12 "International Investment Position (Qu… qiip_q_… https://www.stat-search.boj…
     ## 13 "International Investment Position (Ca… iip_cy_… https://www.stat-search.boj…
+    ## 14 "BIS International Locational Banking … bis1-1_… https://www.stat-search.boj…
+    ## 15 "BIS International Locational Banking … bis1-2_… https://www.stat-search.boj…
+    ## 16 "BIS International Consolidated Bankin… bis2-1_… https://www.stat-search.boj…
+    ## 17 "BIS International Consolidated Bankin… bis2-2_… https://www.stat-search.boj…
 
 The function returns a [tibble](https://tibble.tidyverse.org/) data
 frame listing the available data sets. The column `url` can be used as
@@ -58,7 +62,7 @@ sppi <- get_boj(datasets$url[(datasets$name == "sppi_m_en")])
 sppi
 ```
 
-    ## # A tibble: 41,738 × 5
+    ## # A tibble: 42,247 × 5
     ##    code              desc                  struc                 date  obs_value
     ##    <chr>             <chr>                 <chr>                 <chr>     <dbl>
     ##  1 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.6
@@ -71,7 +75,7 @@ sppi
     ##  8 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
     ##  9 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
     ## 10 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
-    ## # … with 41,728 more rows
+    ## # … with 42,237 more rows
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the
 following:

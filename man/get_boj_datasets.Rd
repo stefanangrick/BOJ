@@ -2,16 +2,22 @@
 % Please edit documentation in R/BOJ.R
 \name{get_boj_datasets}
 \alias{get_boj_datasets}
-\title{Download data a frame listing available BOJ data sets}
+\title{Download and parse a list of available BOJ data sets}
 \usage{
-get_boj_datasets()
+get_boj_datasets(url = "https://www.stat-search.boj.or.jp/info/dload_en.html")
+}
+\arguments{
+\item{url}{URL of the BOJ's Time-Series Data portal flat files page
+(optional).}
 }
 \value{
 A tibble data frame
 }
 \description{
-Download data a frame listing available BOJ data sets
+Download and parse a list of available BOJ data sets
 }
 \examples{
+\dontrun{
 datasets <- get_boj_datasets()
+}
 }

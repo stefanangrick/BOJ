@@ -1,14 +1,13 @@
 Package: BOJ
 Type: Package
 Title: Interface to Bank of Japan Statistics
-Version: 0.2.4
-Date: 2021-12-11
+Version: 0.3
+Date: 2022-01-03
 Authors@R: person("Stefan", "Angrick", email = "contact@stefanangrick.net",
                   role = c("aut", "cre", "cph"))
 Description: Provides an interface to Bank of Japan <https://www.boj.or.jp>
   statistics.
 License: MIT + file LICENSE
-LazyData: TRUE
 Suggests:
     knitr,
     rmarkdown,

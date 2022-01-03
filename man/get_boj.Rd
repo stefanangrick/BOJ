@@ -2,7 +2,7 @@
 % Please edit documentation in R/BOJ.R
 \name{get_boj}
 \alias{get_boj}
-\title{Download and import a BOJ data set}
+\title{Download and parse a BOJ data set}
 \usage{
 get_boj(url, ...)
 }
@@ -17,9 +17,11 @@ get_boj(url, ...)
 A tibble data frame
 }
 \description{
-Download and import a BOJ data set
+Download and parse a BOJ data set
 }
 \examples{
+\dontrun{
 datasets <- get_boj_datasets()
 df <- get_boj(datasets$url[(datasets$name == "sppi_q_en")])
+}
 }
