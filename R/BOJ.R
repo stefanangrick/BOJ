@@ -47,19 +47,22 @@ get_boj_datasets <- function(
                            url  = item_urls)
 
       if (nrow(tbl) == 0) {
-        warning("Tibble data frame is empty.")
+        message(paste("Unable to download and parse BOJ homepage:", url))
+        message("The resource is unavailable or has changed.")
       }
 
       tbl
     },
     error = function(x) {
       message(paste("Unable to download and parse BOJ homepage:", url))
+      message("The resource is unavailable or has changed.")
       message("Original error message:")
       message(x)
       return(NA)
     },
     warning = function(x) {
       message(paste("Unable to download and parse BOJ homepage:", url))
+      message("The resource is unavailable or has changed.")
       message("Original warning message:")
       message(x)
       return(NA)
@@ -142,7 +145,8 @@ get_boj <- function(url, ...) {
         }
 
         if (nrow(df[[i]]) == 0) {
-          warning("Tibble data frame is empty.")
+          message(paste("Unable to download and parse BOJ homepage:", url))
+          message("The resource is unavailable or has changed.")
         }
       }
 
@@ -155,12 +159,14 @@ get_boj <- function(url, ...) {
     },
     error = function(x) {
       message(paste("Unable to download and parse file:", url))
+      message("The resource is unavailable or has changed.")
       message("Original error message:")
       message(x)
       return(NA)
     },
     warning = function(x) {
       message(paste("Unable to download and parse file:", url))
+      message("The resource is unavailable or has changed.")
       message("Original warning message:")
       message(x)
       return(NA)
