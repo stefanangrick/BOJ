@@ -4,20 +4,22 @@
 \alias{get_boj_datasets}
 \title{Download and parse a list of available BOJ data sets}
 \usage{
-get_boj_datasets(url = "https://www.stat-search.boj.or.jp/info/dload_en.html")
+get_boj_datasets(
+  base_url = "https://www.stat-search.boj.or.jp/info/dload_en.html"
+)
 }
 \arguments{
-\item{url}{URL of the BOJ's Time-Series Data portal flat files page
-(optional).}
+\item{base_url}{Character. URL of the BOJ's Time-Series Data portal flat
+files page (optional).}
 }
 \value{
-A tibble data frame
+A tibble data frame.
 }
 \description{
 Download and parse a list of available BOJ data sets
 }
 \examples{
-\dontrun{
-datasets <- get_boj_datasets()
+\donttest{
+ds <- get_boj_datasets()
 }
 }

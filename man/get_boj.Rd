@@ -4,24 +4,28 @@
 \alias{get_boj}
 \title{Download and parse a BOJ data set}
 \usage{
-get_boj(url, ...)
+get_boj(item_url, auto_pivot = TRUE, ...)
 }
 \arguments{
-\item{url}{URL of the data set to be imported (usually obtained through
-\code{get_boj_datasets()})}
+\item{item_url}{Character. URL of the data set to be imported (usually
+obtained through \code{get_boj_datasets()}).}
+
+\item{auto_pivot}{Logical. Controls whether source data set is converted to
+long format. Set this to \code{FALSE} to disable conversion (default: TRUE).}
 
 \item{...}{Arguments passed to \code{download.file()} (e.g.
-\code{quiet = TRUE})}
+\code{quiet = TRUE}).}
 }
 \value{
-A tibble data frame
+A tibble data frame, or a list of tibble data frames in cases where
+the source zip file contains multiple csv files.
 }
 \description{
 Download and parse a BOJ data set
 }
 \examples{
-\dontrun{
-datasets <- get_boj_datasets()
-df <- get_boj(datasets$url[(datasets$name == "sppi_q_en")])
+\donttest{
+ds   <- get_boj_datasets()
+sppi <- get_boj(ds$url[(ds$name == "sppi_q_en")])
 }
 }

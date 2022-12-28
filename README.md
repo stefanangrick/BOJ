@@ -11,74 +11,83 @@ files](https://www.stat-search.boj.or.jp/info/dload_en.html) available
 on the [BOJ Time-Series Data](https://www.stat-search.boj.or.jp/)
 portal.
 
-## Import data
+## Install package
 
-To import data, first load the package:
+The package can be installed from CRAN or Github.
+
+``` r
+library(devtools)
+install_github("stefanangrick/BOJ")  # GitHub
+install.packages("BOJ")              # CRAN
+```
+
+## Example usage
+
+To import data, first load the package.
 
 ``` r
 library("BOJ")
 ```
 
 Next, run the `get_boj_datasets()` function to obtain a list of
-available data sets:
+available data sets.
 
 ``` r
-datasets <- get_boj_datasets()
-datasets
+ds <- get_boj_datasets()
+ds
 ```
 
-    ## # A tibble: 17 × 3
-    ##    desc                                    name     url                         
-    ##    <chr>                                   <chr>    <chr>                       
-    ##  1 "Corporate Goods Price Index (CGPI)"    cgpi_m_… https://www.stat-search.boj…
-    ##  2 "Producer Price Index using chain-weig… cgpiren… https://www.stat-search.boj…
-    ##  3 "Services Producer Price Index (SPPI)"  sppi_m_… https://www.stat-search.boj…
-    ##  4 "Wholesale Services Price Index"        sppi_q_… https://www.stat-search.boj…
-    ##  5 "Input-Output Price Index of the Manuf… iopi_m_… https://www.stat-search.boj…
-    ##  6 "Flow of Funds"                         fof      https://www.stat-search.boj…
-    ##  7 "Flow of Funds (with name of time-seri… fof2_en  https://www.stat-search.boj…
-    ##  8 "TANKAN"                                co       https://www.stat-search.boj…
-    ##  9 "TANKAN (Fixed Investment and Software… colease  https://www.stat-search.boj…
-    ## 10 "Balance of Payments "                  bp_m_en  https://www.stat-search.boj…
-    ## 11 "Regional Balance of Payments (quarter… regbp_q… https://www.stat-search.boj…
-    ## 12 "International Investment Position (Qu… qiip_q_… https://www.stat-search.boj…
-    ## 13 "International Investment Position (Ca… iip_cy_… https://www.stat-search.boj…
-    ## 14 "BIS International Locational Banking … bis1-1_… https://www.stat-search.boj…
-    ## 15 "BIS International Locational Banking … bis1-2_… https://www.stat-search.boj…
-    ## 16 "BIS International Consolidated Bankin… bis2-1_… https://www.stat-search.boj…
-    ## 17 "BIS International Consolidated Bankin… bis2-2_… https://www.stat-search.boj…
+    ## # A tibble: 16 × 3
+    ##    desc                                                              name  url  
+    ##    <chr>                                                             <chr> <chr>
+    ##  1 "Corporate Goods Price Index (CGPI)"                              cgpi… http…
+    ##  2 "Producer Price Index using chain-weighted index formula"         cgpi… http…
+    ##  3 "Services Producer Price Index (SPPI)"                            sppi… http…
+    ##  4 "Wholesale Services Price Index"                                  sppi… http…
+    ##  5 "Flow of Funds"                                                   fof   http…
+    ##  6 "Flow of Funds (with name of time-series, etc.)"                  fof2… http…
+    ##  7 "TANKAN"                                                          co    http…
+    ##  8 "TANKAN (Fixed Investment and Software Investment)(Compiled unde… cole… http…
+    ##  9 "Balance of Payments "                                            bp_m… http…
+    ## 10 "Regional Balance of Payments (quarterly)"                        regb… http…
+    ## 11 "International Investment Position (Quarterly Data) & Gross Exte… qiip… http…
+    ## 12 "International Investment Position (Calendar Year Data)"          iip_… http…
+    ## 13 "BIS International Locational Banking Statistics in Japan (Claim… bis1… http…
+    ## 14 "BIS International Locational Banking Statistics in Japan (Liabi… bis1… http…
+    ## 15 "BIS International Consolidated Banking Statistics in Japan (Imm… bis2… http…
+    ## 16 "BIS International Consolidated Banking Statistics in Japan (Ult… bis2… http…
 
-The function returns a [tibble](https://tibble.tidyverse.org/) data
-frame listing the available data sets. The column `url` can be used as
-input for the function `get_boj()` which downloads, parses and imports
-the corresponding data.
+The `get_boj_datasets()` function returns a
+[tibble](https://tibble.tidyverse.org/) data frame listing the available
+data sets. The column `url` can be used as input for the `get_boj()`
+function which downloads, parses and imports the corresponding data set.
 
 To import monthly-frequency data on Japan’s [Services Producer Price
-Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/),
-run:
+Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/), run
+the below.
 
 ``` r
-sppi <- get_boj(datasets$url[(datasets$name == "sppi_m_en")])
+sppi <- get_boj(ds$url[(ds$name == "sppi_m_en")])
 sppi
 ```
 
-    ## # A tibble: 42,247 × 5
-    ##    code              desc                  struc                 date  obs_value
-    ##    <chr>             <chr>                 <chr>                 <chr>     <dbl>
-    ##  1 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.6
-    ##  2 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.7
-    ##  3 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
-    ##  4 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100  
-    ##  5 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
-    ##  6 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100  
-    ##  7 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
-    ##  8 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…     100. 
-    ##  9 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
-    ## 10 PRCS15_5200000000 Services Producer Pr… [Services Producer P… 2015…      99.9
-    ## # … with 42,237 more rows
+    ## # A tibble: 48,355 × 5
+    ##    code              desc                                    struc date  obs_v…¹
+    ##    <chr>             <chr>                                   <chr> <chr>   <dbl>
+    ##  1 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.6
+    ##  2 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.7
+    ##  3 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
+    ##  4 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100  
+    ##  5 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
+    ##  6 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100  
+    ##  7 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
+    ##  8 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
+    ##  9 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.9
+    ## 10 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.9
+    ## # … with 48,345 more rows, and abbreviated variable name ¹​obs_value
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the
-following:
+below.
 
 ``` r
 library("dplyr")
@@ -95,8 +104,8 @@ sppi_plot <- subset(sppi_plot, !is.na(obs_value))
 
 ggplot(sppi_plot, aes(x = date, y = obs_value)) +
   geom_line(aes(colour = struc)) +
-  labs(x = "Date", y = "Services Producer Price Index (2015 base)") +
-  theme(legend.title = element_blank())
+  labs(title = "Services Producer Price Index (2015 base)",
+       x = "Date", y = "Index")
 ```
 
 ![](README_files/figure-gfm/plot-1.png)<!-- -->
