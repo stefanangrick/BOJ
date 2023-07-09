@@ -63,7 +63,7 @@ data sets. The column `url` can be used as input for the `get_boj()`
 function which downloads, parses and imports the corresponding data set.
 
 To import monthly-frequency data on Japan’s [Services Producer Price
-Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/), run
+Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm), run
 the below.
 
 ``` r
@@ -71,20 +71,20 @@ sppi <- get_boj(ds$url[(ds$name == "sppi_m_en")])
 sppi
 ```
 
-    ## # A tibble: 48,355 × 5
-    ##    code              desc                                    struc date  obs_v…¹
-    ##    <chr>             <chr>                                   <chr> <chr>   <dbl>
-    ##  1 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.6
-    ##  2 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.7
-    ##  3 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
-    ##  4 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100  
-    ##  5 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
-    ##  6 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100  
-    ##  7 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
-    ##  8 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…   100. 
-    ##  9 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.9
-    ## 10 PRCS15_5200000000 Services Producer Price Index (2015 ba… [Ser… 2015…    99.9
-    ## # … with 48,345 more rows, and abbreviated variable name ¹​obs_value
+    ## # A tibble: 51,409 × 5
+    ##    code              desc                                  struc date  obs_value
+    ##    <chr>             <chr>                                 <chr> <chr>     <dbl>
+    ##  1 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…      99.6
+    ##  2 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…      99.7
+    ##  3 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100. 
+    ##  4 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100  
+    ##  5 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100. 
+    ##  6 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100  
+    ##  7 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100. 
+    ##  8 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…     100. 
+    ##  9 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…      99.9
+    ## 10 PRCS15_5200000000 Services Producer Price Index (2015 … [Ser… 2015…      99.9
+    ## # ℹ 51,399 more rows
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the
 below.

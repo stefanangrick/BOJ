@@ -37,7 +37,7 @@ ds
 
 The `get_boj_datasets()` function returns a [tibble](https://tibble.tidyverse.org/) data frame listing the available data sets. The column `url` can be used as input for the `get_boj()` function which downloads, parses and imports the corresponding data set.
 
-To import monthly-frequency data on Japan's [Services Producer Price Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/), run the below.
+To import monthly-frequency data on Japan's [Services Producer Price Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm), run the below.
 
 ```{r sppi, message=FALSE, warning=FALSE}
 sppi <- get_boj(ds$url[(ds$name == "sppi_m_en")])

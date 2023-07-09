@@ -2,11 +2,11 @@
 title: "BOJ"
 author: "Stefan Angrick"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{BOJ}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+output: rmarkdown::html_vignette
 ---
 
 The `BOJ` package provides an `R` interface to [Bank of Japan](https://www.boj.or.jp/) statistics, specifically the [flat files](https://www.stat-search.boj.or.jp/info/dload_en.html) available on the [BOJ Time-Series Data](https://www.stat-search.boj.or.jp/) portal.
@@ -25,29 +25,29 @@ install.packages("BOJ")              # CRAN
 
 To import data, first load the package.
 
-```{r loading, message=FALSE, warning=FALSE}
+```{r loading, eval=FALSE, message=FALSE, warning=FALSE}
 library("BOJ")
 ```
 
 Next, run the `get_boj_datasets()` function to obtain a list of available data sets.
 
-```{r datasets, message=FALSE, warning=FALSE}
+```{r datasets, eval=FALSE, message=FALSE, warning=FALSE}
 ds <- get_boj_datasets()
 ds
 ```
 
 The `get_boj_datasets()` function returns a [tibble](https://tibble.tidyverse.org/) data frame listing the available data sets. The column `url` can be used as input for the `get_boj()` function which downloads, parses and imports the corresponding data set.
 
-To import monthly-frequency data on Japan's [Services Producer Price Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm/), run the below.
+To import monthly-frequency data on Japan's [Services Producer Price Index](https://www.boj.or.jp/en/statistics/pi/sppi_2015/index.htm), run the below.
 
-```{r sppi, message=FALSE, warning=FALSE}
+```{r sppi, eval=FALSE, message=FALSE, warning=FALSE}
 sppi <- get_boj(ds$url[(ds$name == "sppi_m_en")])
 sppi
 ```
 
 To plot the data using [ggplot2](https://ggplot2.tidyverse.org), run the below.
 
-```{r plot, message=FALSE, warning=FALSE}
+```{r plot, eval=FALSE, message=FALSE, warning=FALSE}
 library("dplyr")
 library("ggplot2")
 library("zoo")
