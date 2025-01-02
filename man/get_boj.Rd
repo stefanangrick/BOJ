@@ -8,7 +8,7 @@ get_boj(item_url, auto_pivot = TRUE, ...)
 }
 \arguments{
 \item{item_url}{Character. URL of the data set to be imported (usually
-obtained through \code{get_boj_datasets()}).}
+obtained via \code{get_boj_datasets()}).}
 
 \item{auto_pivot}{Logical. Controls whether source data set is converted to
 long format. Set this to \code{FALSE} to disable conversion (default: TRUE).}
@@ -25,7 +25,7 @@ Download and parse a BOJ data set
 }
 \examples{
 \donttest{
-ds   <- get_boj_datasets()
-sppi <- get_boj(ds$url[(ds$name == "sppi_q_en")])
+ds <- get_boj_datasets()
+df <- get_boj(ds$url[(ds$name == "sppi_q_en")])
 }
 }

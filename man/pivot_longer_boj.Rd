@@ -11,7 +11,7 @@ pivot_longer_boj(tbl)
 obtained via \code{get_boj(item_url, auto_pivot = FALSE)}).}
 }
 \value{
-A tibble data frame.
+A tibble data frame in long format.
 }
 \description{
 Convert a BOJ data set to long format

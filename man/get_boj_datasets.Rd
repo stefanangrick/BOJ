@@ -2,7 +2,7 @@
 % Please edit documentation in R/BOJ.R
 \name{get_boj_datasets}
 \alias{get_boj_datasets}
-\title{Download and parse a list of available BOJ data sets}
+\title{Retrieve a list of available BOJ data sets}
 \usage{
 get_boj_datasets(
   base_url = "https://www.stat-search.boj.or.jp/info/dload_en.html"
@@ -16,7 +16,7 @@ files page (optional).}
 A tibble data frame.
 }
 \description{
-Download and parse a list of available BOJ data sets
+Retrieve a list of available BOJ data sets
 }
 \examples{
 \donttest{

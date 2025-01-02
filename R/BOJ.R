@@ -1,13 +1,13 @@
 if (getRversion() >= "2.15.1") utils::globalVariables(c("obs_value"))
 
-# Clean names
+# Standardise column names
 .clean_names <- function(x) {
   x <- make.unique(tolower(trimws(gsub("[[:space:]]", "_", x))))
 
   return(x)
 }
 
-# Download a file
+# Download a file from a given URL
 .download_file <- function(file_url, ...) {
   # Save user options
   old_options <- options()
@@ -55,7 +55,7 @@ if (getRversion() >= "2.15.1") utils::globalVariables(c("obs_value"))
   return(file_path)
 }
 
-# Unzip a file
+# Extract the contents of a zip file
 .unzip_file <- function(archive_path) {
   # Prepare temp dir
   tmp_dir <- tempdir()
@@ -75,7 +75,7 @@ if (getRversion() >= "2.15.1") utils::globalVariables(c("obs_value"))
 #' @param tbl Tibble. A tibble data frame containing a BOJ data set (usually
 #' obtained via \code{get_boj(item_url, auto_pivot = FALSE)}).
 #'
-#' @return A tibble data frame.
+#' @return A tibble data frame in long format.
 #' @export
 #'
 #' @examples
@@ -163,7 +163,7 @@ pivot_longer_boj <- function(tbl) {
   return(tbl)
 }
 
-#' Download and parse a list of available BOJ data sets
+#' Retrieve a list of available BOJ data sets
 #'
 #' @param base_url Character. URL of the BOJ's Time-Series Data portal flat
 #' files page (optional).
@@ -221,7 +221,7 @@ get_boj_datasets <- function(
 #' Download and parse a BOJ data set
 #'
 #' @param item_url Character. URL of the data set to be imported (usually
-#' obtained through \code{get_boj_datasets()}).
+#' obtained via \code{get_boj_datasets()}).
 #' @param auto_pivot Logical. Controls whether source data set is converted to
 #' long format. Set this to \code{FALSE} to disable conversion (default: TRUE).
 #' @param ... Arguments passed to \code{download.file()} (e.g.
@@ -233,8 +233,8 @@ get_boj_datasets <- function(
 #'
 #' @examples
 #' \donttest{
-#' ds   <- get_boj_datasets()
-#' sppi <- get_boj(ds$url[(ds$name == "sppi_q_en")])
+#' ds <- get_boj_datasets()
+#' df <- get_boj(ds$url[(ds$name == "sppi_q_en")])
 #' }
 get_boj <- function(item_url, auto_pivot = TRUE, ...) {
   try(zip_file_path <- .download_file(item_url, ...), TRUE)
